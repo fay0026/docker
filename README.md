@@ -73,3 +73,21 @@ docker inspect "conteneur"
 
 ## Partage local et conteneur
 docker _ --volume "Répertoirelocal" _
+
+## Commandes réseau
+
+### Lister les réseaux :
+docker network ls
+
+### Créer un réseau :
+docker network create "network"
+
+### Inspecter un réseau :
+docker network inspect "network"
+
+### Pour créer un docker lié à un réseau (Mysql en example) :
+docker --detach --env ("MYSQL_ROOT_PASSWORD=root", définis le mot de passe) --network "network" mariadb
+
+### Pour utiliser adminer, pour une interface web :
+docker --publish "7080:8080" adminer
+
