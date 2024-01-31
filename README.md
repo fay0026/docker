@@ -85,9 +85,28 @@ docker network create "network"
 ### Inspecter un réseau :
 docker network inspect "network"
 
-### Pour créer un docker lié à un réseau (Mysql en example) :
+### Pour créer un conteneur lié à un réseau (Mysql en example) :
 docker --detach --env ("MYSQL_ROOT_PASSWORD=root", définis le mot de passe) --network "network" mariadb
 
 ### Pour utiliser adminer, pour une interface web :
 docker --publish "7080:8080" adminer
 
+## Docker compose
+
+## Pour exécuter un fichier docker-compose.yaml dans le répertoire courant :
+docker-compose up -d
+#### Pour spécifier
+docker-compose -f <nom-du-fichier.yaml> up
+
+## Image personnalisée
+
+### Pour créer une image d'un fichier dockerfile :
+docker build --tag"login"/"répertoire" .
+#### Pour la supprimer
+docker image rm "image"
+### Pour publier un conteneur
+docker run --publish 8080:80
+
+### Ajouter une image locale à un dépôt distant :
+docker tag local-image:"image" new-repo:"image"
+docker push new-repo:"image"
