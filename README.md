@@ -3,15 +3,6 @@
 
 Dernier TP :
 
-# Partage et persistance des données
-
-Maintenant, recréez le même conteneur avec la même commande :
-
-docker run -ti --name=my-ubuntu --volume /working/<votre_login>/s4-docker/partage:/myData ubuntu /bin/bash
-
-Vérifiez la présence ou l'absence des fichiers /other_file.txt et /myData/file2.txt ainsi que de leur contenu.
-
-
 # Lancement Docker :
 
 Toujours faire avant chaque session :
@@ -78,4 +69,7 @@ docker stats "conteneur"
 ### Afficher les informations détaillées *(inspect) d'un conteneur actif :
 docker inspect "conteneur"
 
-#### Après avoir créé des fichiers via un conteneur, il faut effectuer un rm dans le conteneur pour le supprimer.
+#### Après avoir créé des fichiers via un conteneur, il faut effectuer un rm dans le conteneur pour le supprimer. Supprimer le conteneur supprime ses fichiers, si aucun partage n'est appliqué.
+
+## Partage local et conteneur
+docker _ --volume "Répertoirelocal" _
