@@ -14,3 +14,5 @@ CMD ["-D", "FOREGROUND"]
 EXPOSE 80
 COPY ./website /var/www/html
 RUN chmod a+r /var/www/html/*
+COPY ./website /var/www/html
+RUN chmod a+r /var/www/html

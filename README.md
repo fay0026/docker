@@ -112,3 +112,15 @@ docker run --publish 8080:80
 ### Ajouter une image locale à un dépôt distant :
 docker tag local-image:"image" new-repo:"image"
 docker push new-repo:"image"
+
+entry point : exécutable
+cmd : arguments donnés à l'exécutable
+
+user data www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+
+setfacl -m u:33:..x website
+
+Le groupe a un priorité sur l'utilisateur, penser à accorder les droits au groupe avant l'utilisateur.
+
+ENTRYPOINT["docker-entrypoint.sh"]
+CMD["php-fpm"]
