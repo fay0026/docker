@@ -30,6 +30,8 @@ docker ps
 ##### Pour les actifs :
 docker container ls -a
 docker ps -a
+##### Pour les rendre actifs :
+docker-compose up
 
 ### Démarrer une instance de conteneur via une image donnée :
 docker run "image"
