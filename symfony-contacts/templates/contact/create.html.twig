@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %} Création d''un nouveau contact {% endblock %}
+
+{% block body %}
+    <h1> Création d''un nouveau contact </h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <input type="submit" class="btn w-100 p-3 btn btn-primary" value="Ajouter" />
+    {{ form_end(form) }}
+{% endblock %}

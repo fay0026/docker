@@ -3,6 +3,23 @@
 
 Dernier TP :
 
+Pile applicative Symfony Etape1 : image Docker de développement
+
+La phase PHP
+
+Créez et éditer un fichier Dockerfile à la racine du projet.
+
+Étape : Commencez par définir un argument que vous nommerez PHP_VERSION et qui recevra la valeur 8.1.
+Note
+
+Cet argument vous permettra de facilement choisir la version de PHP lors de la construction des images. Cela sera très utile lorsque vous souhaitez tester l'application sur une nouvelle version.
+
+Étape : Ajoutez un argument NGINX_VERSION qui aura pour valeur par défaut la version 1.25.3.
+
+Étape 1 : Ensuite créez la première phase en vous basant sur l'image php en version PHP_VERSION, suivie du préfixe -fpm-alpine (version FPM de PHP).
+
+Vous nommerez cette phase contacts_php.
+
 # Lancement Docker :
 
 Toujours faire avant chaque session :
@@ -108,6 +125,8 @@ docker build --tag"login"/"répertoire" .
 docker image rm "image"
 ### Pour publier un conteneur
 docker run --publish 8080:80
+### Pour les lister
+docker images ls
 
 ### Ajouter une image locale à un dépôt distant :
 docker tag local-image:"image" new-repo:"image"

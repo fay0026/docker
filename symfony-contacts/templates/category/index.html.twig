@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1> Liste des catégories : </h1>
+    <h4>
+        <ul>
+            {% for category in category_list %}
+                <li class="catégories"> <button type="button" class="btn btn-primary"> <a href="{{ path('app_category_show', {'id': category.category.id }) }}" class="select_contact">{{ category.category.name }}</a> <span class="badge bg-secondary">{{ category.count }}</span> </button> </li>
+            {% endfor %}
+        </ul>
+    </h4>
+</div>
+{% endblock %}

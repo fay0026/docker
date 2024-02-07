@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ contact.lastname }} {{ contact.firstname}}{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <h2> Voici les informations du contact :</h2>
+    <dl>
+        <h3>
+            <dt> Nom du contact : </dt>
+            <dd> {{ contact.lastname}} </dd>
+            <dt> Prénom du contact : </dt>
+            <dd> {{ contact.firstname}} </dd>
+            <dt> Email du contact : </dt>
+            <dd> {{ contact.email}} </dd>
+            <dt> Téléphone du contact : </dt>
+            <dd> {{ contact.phone}} </dd>
+            <dt> Catégorie du contact : </dt>
+            <dd> {{ contact.category.name ?? 'Pas de catégories'}} </dd>
+        </h3>
+    </dl>
+{% endblock %}
+

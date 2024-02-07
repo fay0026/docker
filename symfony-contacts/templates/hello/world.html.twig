@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% set colors = ['red', 'green'] %}
+
+{% block body %}
+    <p> <h1> Hello {{ name }} </h1> </p>
+    {% for i in 1..10 %}
+         <li style="color:{{ cycle(colors, i) }}"> Hello {{ name|capitalize }} ({{ i|format_number({min_integer_digit:2}) }}) </li>
+    {% endfor %}
+{% endblock %}
+
+{% block title %}
+Hello {{ name }}
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{# name = {{ "#{contact.lastname} #{contact.firstname}" }} #}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Edition de {{ "#{contact.lastname} #{contact.firstname}" }} {% endblock %}
+
+{% block body %}
+    <h1> Edition de {{ "#{contact.lastname} #{contact.firstname}" }} </h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn w-100 p-3 btn btn-primary" value="Modifier" />
+    {{ form_end(form) }}
+{% endblock %}
