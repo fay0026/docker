@@ -1,0 +1,5 @@
+ARG PHP_VERSION=8.1
+ARG NGINX_VERSION=1.25.3
+
+FROM PHP as contacts_php VERSION=PHP_VERSION -fpm-alpine
+LABEL org.opencontainers.image.authors="FAY Damien"
