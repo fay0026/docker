@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_USER = user0001
+      MYSQL_PASSWORD = aAAAaaAaAAglbskf
+      MYSQL_ROOT_PASSWORD: secretROOTPasswOrd
+      MYSQL_DATABASE = docker
+
+  php:
+    build :
+      Context : ./
+    depends_on:
+      -db
+
+  web:
+    build :
+      Content : ./
+    depends_on:
+      -php
+volumes:
+  root:
+  overload:
