@@ -143,3 +143,10 @@ Le groupe a un priorité sur l'utilisateur, penser à accorder les droits au gro
 
 ENTRYPOINT["docker-entrypoint.sh"]
 CMD["php-fpm"]
+
+${APP_ENV:?APP_ENV is not set or empty}
+
+Pour COPY, possibilité de faire plusieurs fichiers d'un coup.
+
+Pour changer de tags :
+docker tag monimage:v1.0a.0 monimage:v1.0.0

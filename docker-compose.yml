@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_USER = user0001
       MYSQL_PASSWORD = aAAAaaAaAAglbskf
-      MYSQL_ROOT_PASSWORD: secretROOTPasswOrd
+      MYSQL_ROOT_PASSWORD = secretROOTPasswOrd
       MYSQL_DATABASE = docker
 
   php:
