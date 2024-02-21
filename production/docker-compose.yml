@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER:?MYSQL_USER is not set or empty}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is not set or empty}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is not set or empty}
+      MYSQL_DATABASE: contacts
+
+  php:
+    image: ${PHP_IMAGE:?PHP_IMAGE is not set or empty}:v${APP_VERSION:?APP_VERSION is not specified}
+    restart: always
+    depends_on:
+      - db
+    environment:
+      APP_DEBUG: ${APP_DEBUG:-0}
+      APP_ENV: ${APP_ENV:-prod}
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-0.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+      APP_SECRET: ${APP_SECRET:?APP_SECRET is not set or empty}
+      CORS_ALLOW_ORIGIN: ${CORS_ALLOW_ORIGIN:?CORS_ALLOW_ORIGIN is not set or empty}
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is not set or empty}
+      TRUSTED_HOSTS: ${TRUSTED_HOSTS:?TRUSTED_HOSTS is not set or empty}
+
+  nginx:
+    image: ${NGINX_IMAGE:?NGINX_IMAGE is not set or empty}:v${APP_VERSION:?APP_VERSION is not specified}
+    ports:
+      - "80:8000"
+    restart: always
+    depends_on:
+      - php
