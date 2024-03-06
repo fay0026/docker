@@ -114,25 +114,3 @@ FROM contacts_nginx as contacts_nginx_prod
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
