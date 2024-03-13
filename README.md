@@ -125,6 +125,8 @@ le -t permet de nommer, et le --target précise la phase.
 
 ### Copier des fichiers
 COPY "Fichier1" ("Fichier2"...) "Destination"
+#### A partir d'une phase
+COPY --from="nom de phase" "Fichier1/Répertoire1" "Destination"
 
 ### Définir un point de montage pour l'exécutable
 ENTRYPOINT["filename"]
@@ -141,9 +143,9 @@ RUN set -eux
 ## Docker-compose
 
 ### Utiliser une variable d'un .env
-${APP_ENV}
+ ${APP_ENV} 
 #### Vérifier si elle est vide
-${APP_ENV:?APP_ENV is not set or empty}
+ ${APP_ENV:?APP_ENV is not set or empty} 
 
 ### Organisation générale
 services:
