@@ -1,20 +1,20 @@
-ARG MODE_VERSION=20.11.1
+ARG NODE_VERSION=21.7.1
 
 ARG PHP_VERSION=8.1
 ARG NGINX_VERSION=1.25.3
 
-/working/fay0026/s4-docker/admin-api-react-template/package.json
-/working/fay0026/s4-docker/admin-api-react-template/package-lock.json
-
-FROM nodejs:{$MODE_VERSION}-alpine as admin_development
+FROM nodejs:${NODE_VERSION}-alpine as react_development
 
 	ENV COMPOSER_ALLOW_SUPERUSER = 1
 
-	ENV PATH="${PATH}:/usr/src/admin"
+	ENV PATH="${PATH}:/usr/src/project"
 
 	COPY package.json ./
 
 	COPY package-lock.json ./
+
+	RUN set -eux; \
+	composer install
 
 	COPY README.md ./
 
@@ -30,21 +30,17 @@ FROM nodejs:{$MODE_VERSION}-alpine as admin_development
 
 
 
-FROM admin_development as admin_build
+FROM react_development as react_build
 
-	ARG REACT_APP_API_ENTRYPOINT=
+	RUN set -eux; \
+	docker build --target react_devlopment -t fay0026/demo-react:v1.0.0 .
 
 
 
-FROM nginx:${NGINX_VERSION}-alpine as admin_nginx
+FROM nginx:${NGINX_VERSION}-alpine as react_nginx
 
 	COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d
 
 	WORKDIR ./public
 
-	COPY --from=admin_development build/ ./build/
-
-	
-FROM Dockerfile:{1.0.0} as fay0026/demo-admin-react
-
-	REACT_APP_API_ENTRYPOINT=https://demo.api-platform.com
+	COPY --from=react_development build/ ./build/

@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   dev:
-    image: ${ADMIN_REACT_IMAGE:?ADMIN_REACT_IMAGE is not set or empty}:v${APP_VERSION}
+    image: ${DEMO_REACT:?DEMO_REACT is not set or empty}:v${APP_VERSION}
     ports:
       - "80:8085"
     restart:

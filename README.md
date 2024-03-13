@@ -113,8 +113,53 @@ docker image ls
 docker tag local-image:"image" new-repo:"image"
 docker push new-repo:"image"
 
-entry point : exécutable
-cmd : arguments donnés à l'exécutable
+## Dockerfile
+
+### Définir une phase
+FROM example:version as "nom de phase"
+-alpine possible
+
+### Créer une image à partir d'une phase
+docker build --target contacts_php_prod -t fay0026/demo-contacts:v1.0.0 .
+le -t permet de nommer, et le --target précise la phase.
+
+### Copier des fichiers
+COPY "Fichier1" ("Fichier2"...) "Destination"
+
+### Définir un point de montage pour l'exécutable
+ENTRYPOINT["filename"]
+
+### Lancer un argument à l'exécutable
+CMD["easter egg command"]
+
+### Lancer des commandes en terminal
+RUN "random command"\
+"angry command"
+#### Sécurisé (quitte si krach)
+RUN set -eux
+
+## Docker-compose
+
+### Utiliser une variable d'un .env
+${APP_ENV}
+#### Vérifier si elle est vide
+${APP_ENV:?APP_ENV is not set or empty}
+
+### Organisation générale
+services:
+  dev:
+    image: ${DEMO_REACT:?DEMO_REACT is not set or empty}:v${APP_VERSION}
+    ports:
+      - "80:8085"
+      (Définis le port)
+    restart:
+      always
+      (Permet de toujours relancer l'image)
+
+# Déploiement
+Pour le déploiement, si la version d'un projet est antérieure à la version de la machine hôte, il faut la supprimer et la recréer pour la mettre à jour. down, puis up. un build pour une màj, down, nouveau tag/pull, up.
+
+
 
 user data www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
 
@@ -122,18 +167,8 @@ setfacl -m u:33:..x website
 
 Le groupe a un priorité sur l'utilisateur, penser à accorder les droits au groupe avant l'utilisateur.
 
-ENTRYPOINT["docker-entrypoint.sh"]
-CMD["php-fpm"]
-
-${APP_ENV:?APP_ENV is not set or empty}
-
-Pour COPY, possibilité de faire plusieurs fichiers d'un coup.
 
 Pour changer de tags :
 docker tag monimage:v1.0a.0 monimage:v1.0.0
 
-Pour créer une image grâce à une phase :
-docker build --target contacts_php_prod -t fay0026/demo-contacts:v1.0.0 .
-le -t permet de nommer, et le --target précise la phase.
 
-Pour le déploiement, si la version d'un projet est antérieure à la version de la machine hôte, il faut la supprimer et la recréer pour la mettre à jour. down, puis up. un build pour une màj, down, nouveau tag/pull, up.
