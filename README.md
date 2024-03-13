@@ -74,6 +74,8 @@ docker inspect "conteneur"
 ## Partage local et conteneur
 docker _ --volume "Répertoirelocal" _
 
+
+
 ## Commandes réseau
 
 ### Lister les réseaux :
@@ -113,7 +115,9 @@ docker image ls
 docker tag local-image:"image" new-repo:"image"
 docker push new-repo:"image"
 
-## Dockerfile
+
+
+# Dockerfile
 
 ### Définir une phase
 FROM example:version as "nom de phase"
@@ -127,8 +131,13 @@ le -t permet de nommer, et le --target précise la phase.
 COPY "Fichier1" ("Fichier2"...) "Destination"
 #### A partir d'une phase
 COPY --from="nom de phase" "Fichier1/Répertoire1" "Destination"
+#### De tout les fichiers au docker
+COPY . ./
 
-### Définir un point de montage pour l'exécutable
+### Définir un point de montage
+VOLUME "Destination"
+
+### Définir une entrée pour l'exécutable
 ENTRYPOINT["filename"]
 
 ### Lancer un argument à l'exécutable
@@ -174,3 +183,4 @@ Pour changer de tags :
 docker tag monimage:v1.0a.0 monimage:v1.0.0
 
 
+Si notre image hérite déjà de l'image cible, on peut juste lancer un npm run build

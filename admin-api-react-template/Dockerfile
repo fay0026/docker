@@ -35,3 +35,6 @@ COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d
 WORKDIR /usr/src/admin
 
 COPY --from=react_development /usr/src/project/build/ ./build
+
+RUN set -eux \
+    docker build --target react_development -t fay0026/demo-react:v1.0.0 .
