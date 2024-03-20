@@ -205,3 +205,17 @@ openssl x509 -in "certificat" -noout -text
 ### N'extraire que la clé publique
 
 openssl x509 -in "certificat" -noout -pubkey
+
+## Créer une clef privée RSA
+openssl genrsa -out server.key 2048
+
+## Générer un certificat auto signé basé sur une clef privée
+
+openssl req -new -x509 -key server.key -out server.crt -days 365
+
+-new pour demander la création d'un nouveau certificat
+-x509 pour demander un certificat auto signé
+-key server.key pour préciser le nom du fichier contenant la clé
+-day 365 pour préciser la durée de validité de 1 an de ce certificat
+-out server.crt pour donner le nom du fichier de sortie qui contiendra le certificat.
+
