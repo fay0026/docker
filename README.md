@@ -168,7 +168,12 @@ services:
       (Permet de toujours relancer l'image)
 
 # Déploiement
+
 Pour le déploiement, si la version d'un projet est antérieure à la version de la machine hôte, il faut la supprimer et la recréer pour la mettre à jour. down, puis up. un build pour une màj, down, nouveau tag/pull, up.
+
+docker build, puis docker push. username/monapp monapp.web
+Sur la machine virtuelle, juste besoin du .env et du docker-compose.yml
+On fait docker pull, et on est bon.
 
 
 
@@ -184,3 +189,19 @@ docker tag monimage:v1.0a.0 monimage:v1.0.0
 
 
 Si notre image hérite déjà de l'image cible, on peut juste lancer un npm run build
+
+# CERTIFICATS
+
+## Vérifier un certificat
+
+Cette commande est utilisable sur un certificat racine, si utilisée sur un certificat certifié par un autre, cela ne marchera pas ou vous renverra une mauvaise réponse.
+
+openssl verify -show-chain "certificat"
+
+## Visualiser le contenu d'un certificat
+
+openssl x509 -in "certificat" -noout -text
+
+### N'extraire que la clé publique
+
+openssl x509 -in "certificat" -noout -pubkey
